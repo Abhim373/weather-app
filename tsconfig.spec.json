@@ -3,9 +3,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
-    "types": [
-      "jasmine"
-    ]
+    "types": [  
+      "jasmine",  
+      "node",  
+      "googlemaps"  
+    ]  
   },
   "files": [
     "src/test.ts",

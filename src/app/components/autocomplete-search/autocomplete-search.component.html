@@ -1,0 +1,62 @@
+<!-- <form [formGroup]="formgroup" >
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>
+      Location
+    </mat-label>
+    <button matPrefix mat-icon-button>
+      <mat-icon >location_on &nbsp; &nbsp;</mat-icon>
+  </button>
+    <input formControlName="cityname" matInput type="text" [matAutocomplete]="auto" [(ngModel)]="currentLoc.name" />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <button matSuffix mat-icon-button>
+      <mat-icon >search</mat-icon>
+  </button>
+  </mat-form-field>
+</form> -->
+
+<!-- <mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>
+    Location
+  </mat-label>
+  <button matPrefix mat-icon-button>
+    <mat-icon >location_on &nbsp; &nbsp;</mat-icon>
+</button>
+<input ngx-google-places-autocomplete [options]="options" matInput  (onAddressChange)="AddressChange($event)"/>
+{{ formattedaddress }}
+</mat-form-field> -->
+
+<div fxLayout="row" >
+  <button mat-raised-button fxFlex class="forecast-button" *ngFor="let item of bulkData">
+      <div class="day">{{item.dt*1000 | date:'EEEE'}}</div>
+      <div class="temp">{{item.temp.min | number: '1.0-0'}}° - {{item.temp.max|number: '1.0-0'}}° </div>
+      <img *ngIf="item['weather'][0]['main']=='Rain'" src="../assets/icons/rain.png" class="day-type-icon">
+      <img *ngIf="item['weather'][0]['main']=='Clouds'" src="../assets/icons/cloudy.png" class="day-type-icon">
+      <img *ngIf="item['weather'][0]['main']=='Extreme'" src="../assets/icons/sunny.png" class="day-type-icon">
+      <div class="day-type">{{item['weather'][0]['main']}}</div>
+  </button>
+</div>
+
+<mat-card class="card-data">
+  
+  <div fxLayout="row" class="today-weather">
+      <div class="mat-display-3" *ngIf="currentLoc; else elseBlock">{{today.current.temp}} ℃</div>
+      <ng-template #elseBlock><p>WeatherData not found</p></ng-template>
+      <img *ngIf="today['current']['weather'][0]['main']=='Rain'" src="../assets/icons/rain.png" class="icon">
+      <img *ngIf="today['current']['weather'][0]['main']=='Clouds'" src="../assets/icons/cloudy.png" class="icon">
+      <img *ngIf="today['current']['weather'][0]['main']=='Extreme'" src="../assets/icons/sunny.png" class="icon">
+  </div>
+ 
+  <app-line-chart></app-line-chart>
+  
+  <div fxLayout="row" >
+      <span class="pressure-humid" fxFlex>Pressure<br>{{today.current.pressure}} hpa</span>
+      <span class="pressure-humid" fxFlex>Humidity<br>{{today.current.humidity}} %</span>
+  </div>
+
+  <app-area-chart></app-area-chart>
+
+</mat-card>

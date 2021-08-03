@@ -1,0 +1,39 @@
+<div fxLayout="row" >
+    <button mat-raised-button fxFlex class="forecast-button" *ngFor="let item of dailyData">
+        <div class="day">{{item.dt*1000 | date:'EEEE'}}</div>
+        <div class="temp">{{item.temp.min | number: '1.0-0'}}° - {{item.temp.max|number: '1.0-0'}}° </div>
+        <img *ngIf="item['weather'][0]['main']=='Rain'" src="../assets/icons/rain.png" class="day-type-icon">
+        <img *ngIf="item['weather'][0]['main']=='Clouds'" src="../assets/icons/cloudy.png" class="day-type-icon">
+        <img *ngIf="item['weather'][0]['main']=='Extreme'" src="../assets/icons/sunny.png" class="day-type-icon">
+        <div class="day-type">{{item['weather'][0]['main']}}</div>
+    </button>
+  </div>
+  
+  <mat-card class="card-data">
+    
+    <div fxLayout="row" class="today-weather">
+        <div class="mat-display-3" *ngIf="today; else elseBlock">{{today.current.temp}} ℃</div>
+        <ng-template #elseBlock><mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </ng-template>
+        <img *ngIf="today['current']['weather'][0]['main']=='Rain'" src="../assets/icons/rain.png" class="icon">
+        <img *ngIf="today['current']['weather'][0]['main']=='Clouds'" src="../assets/icons/cloudy.png" class="icon">
+        <img *ngIf="today['current']['weather'][0]['main']=='Extreme'" src="../assets/icons/sunny.png" class="icon">
+    </div>
+   
+    <app-line-chart></app-line-chart>
+    
+    <div fxLayout="row" >
+        <div>
+            <span class="pressure-humid" fxFlex *ngIf="today; else elseBlock1">Pressure<br>{{today.current.pressure}} hpa</span>
+            <ng-template #elseBlock1><mat-progress-bar mode="indeterminate"></mat-progress-bar></ng-template>
+        </div>
+        <div>
+            <span class="pressure-humid" fxFlex *ngIf="today; else elseBlock2">Humidity<br>{{today.current.humidity}} %</span>
+            <ng-template #elseBlock2><mat-progress-bar mode="indeterminate"></mat-progress-bar></ng-template>
+        </div>
+        
+    </div>
+  
+    <app-area-chart></app-area-chart>
+  
+  </mat-card>

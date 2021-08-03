@@ -1,1 +1,16 @@
-<div>Hello world</div>
+<div fxLayout="column" fxLayoutAlign="space-around">
+    
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>
+          Location
+        </mat-label>
+        <button matPrefix mat-icon-button>
+          <mat-icon >location_on &nbsp; &nbsp;</mat-icon>
+      </button>
+      <input ngx-google-places-autocomplete [options]="options" matInput  (onAddressChange)="AddressChange($event)"/>
+      {{ formattedaddress }}
+      </mat-form-field>
+    
+    <app-container></app-container>
+
+</div>

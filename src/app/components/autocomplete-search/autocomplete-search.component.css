@@ -1,0 +1,35 @@
+.example-full-width{
+    width: 100%;
+}
+
+.forecast-button{
+    padding: 1rem;  
+    margin: 1rem 0 1rem 0 ;
+  }
+  
+  .day-type-icon{
+      margin: 1rem;
+      height:2rem;
+  }
+  
+  .card-data{
+      height: 100%;
+      margin: 1rem;
+  }
+  .pressure-humid{
+      margin: 4rem;
+      text-align: center;
+      font-weight: 700;
+      height: 4rem;
+  }
+
+  .today-weather{
+    align-content: center;
+    margin-left: 4rem;
+    }
+    
+    .icon{
+        height: 4rem;
+        margin-left: 2rem;
+        align-content: center;
+    }
